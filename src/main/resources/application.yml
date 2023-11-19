@@ -1,7 +1,10 @@
 spring:
-  cloud:
-    bus:
-      destination: ymlUpdateTopic
-    config:
-      url: http://127.0.0.1:8888
-      name: apigateway-service
+  application:
+    name: apigateway-service
+  config:
+    import: optional:configserver:http://localhost:8888
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, busrefresh

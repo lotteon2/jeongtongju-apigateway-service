@@ -22,13 +22,12 @@ ext {
 dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-config'
-	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap'
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation group: 'io.micrometer', name: 'micrometer-registry-prometheus'
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-sleuth'
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-zipkin', version: '2.2.8.RELEASE'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.cloud:spring-cloud-starter-bus-kafka'
+	implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
 	//implementation group: 'io.github.lotteon2', name: 'bitbox', version: '1.0.0'
 
 	compileOnly 'org.projectlombok:lombok'
