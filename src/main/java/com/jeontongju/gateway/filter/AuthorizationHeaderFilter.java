@@ -61,7 +61,8 @@ public class AuthorizationHeaderFilter
           }
 
           String memberId = claims.get("memberId", String.class);
-          exchange.getRequest().mutate().header("memberId", memberId).build();
+          String memberRole = claims.get("memberRole", String.class);
+          exchange.getRequest().mutate().header("memberId", memberId).header("memberRole", memberRole).build();
         } catch (IllegalArgumentException e) {
           return onError(exchange, CustomErrMessage.WRONG_JWT_TOKEN);
         } catch (MalformedJwtException e) {
