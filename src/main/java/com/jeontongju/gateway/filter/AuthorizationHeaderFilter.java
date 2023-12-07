@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -27,11 +28,11 @@ import reactor.core.publisher.Mono;
 public class AuthorizationHeaderFilter
     extends AbstractGatewayFilterFactory<AuthorizationHeaderFilter.Config> {
 
-  @Value("${jwt.secret}")
-  private String secret;
+  private final String secret;
 
-  public AuthorizationHeaderFilter() {
+  public AuthorizationHeaderFilter(Environment env) {
     super(Config.class);
+    this.secret = env.getProperty("jwt.secret");
   }
 
   @Override
