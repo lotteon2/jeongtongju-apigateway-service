@@ -11,7 +11,6 @@ import io.jsonwebtoken.security.SignatureException;
 import javax.crypto.SecretKey;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.core.env.Environment;
@@ -63,12 +62,17 @@ public class AuthorizationHeaderFilter
 
           String memberId = claims.get("memberId", String.class);
           String memberRole = claims.get("memberRole", String.class);
-          exchange.getRequest().mutate().header("memberId", memberId).header("memberRole", memberRole).build();
+          exchange
+              .getRequest()
+              .mutate()
+              .header("memberId", memberId)
+              .header("memberRole", memberRole)
+              .build();
         } catch (IllegalArgumentException e) {
           return onError(exchange, CustomErrMessage.WRONG_JWT_TOKEN);
         } catch (MalformedJwtException e) {
           return onError(exchange, CustomErrMessage.MALFORMED_JWT_TOKEN);
-        } catch (ExpiredJwtException e) {
+        } catch (ExpiredJwtException e) { // access-token 만료
           return onError(exchange, CustomErrMessage.EXPIRED_JWT_TOKEN);
         } catch (SignatureException e) {
           return onError(exchange, CustomErrMessage.WRONG_JWT_SIGNATURE);
