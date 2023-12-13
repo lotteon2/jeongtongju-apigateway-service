@@ -27,7 +27,7 @@ public class LoggingFilter extends AbstractGatewayFilterFactory<Config> {
     GatewayFilter filter = new OrderedGatewayFilter((exchange, chain) -> {
       ServerHttpRequest request = exchange.getRequest();
       ServerHttpResponse response = exchange.getResponse();
-      log.info("Matched URI -> {}", request.getPath());
+      log.info("Matched URI -> [{}] {}", request.getMethod(), request.getPath());
       log.info("Logging filter baseMessage : {}", config.getBaseMessage());
 
       if(config.isPreLogger())
