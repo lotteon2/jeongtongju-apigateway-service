@@ -37,7 +37,7 @@ public class OptionalAuthorizationHeaderFilter
   @Override
   public GatewayFilter apply(Config config) {
     return ((exchange, chain) -> {
-      log.info("AuthorizationHeaderFilter's apply executes");
+      log.info("OptionalAuthorizationHeaderFilter's apply executes");
 
       ServerHttpRequest request = exchange.getRequest();
       if (request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
