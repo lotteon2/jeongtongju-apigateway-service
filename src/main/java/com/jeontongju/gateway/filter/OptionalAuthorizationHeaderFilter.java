@@ -44,8 +44,8 @@ public class OptionalAuthorizationHeaderFilter
 
         log.info("[Authorization value]: " + request.getHeaders().get(HttpHeaders.AUTHORIZATION));
         if (request.getHeaders().get(HttpHeaders.AUTHORIZATION) == null) {
-          return chain.filter(exchange);
-//          return onError(exchange, CustomErrMessage.NOT_VALID_JWT_TOKEN);
+//          return chain.filter(exchange);
+          return onError(exchange, CustomErrMessage.NOT_VALID_JWT_TOKEN);
         }
 
         String jwtHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
