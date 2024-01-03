@@ -80,6 +80,7 @@ public class OptionalAuthorizationHeaderFilter
           return onError(exchange, CustomErrMessage.WRONG_JWT_SIGNATURE);
         }
       } else {
+        log.info("[Non-Login OK]..");
         return chain.filter(exchange);
       }
 
