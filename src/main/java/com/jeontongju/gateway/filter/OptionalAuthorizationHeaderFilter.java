@@ -41,6 +41,8 @@ public class OptionalAuthorizationHeaderFilter
 
       ServerHttpRequest request = exchange.getRequest();
       if (request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
+
+        log.info("[Authorization value]: " + request.getHeaders().get(HttpHeaders.AUTHORIZATION));
         if (request.getHeaders().get(HttpHeaders.AUTHORIZATION) == null) {
           return chain.filter(exchange);
 //          return onError(exchange, CustomErrMessage.NOT_VALID_JWT_TOKEN);
