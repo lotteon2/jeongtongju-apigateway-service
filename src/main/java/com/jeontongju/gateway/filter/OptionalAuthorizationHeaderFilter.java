@@ -37,12 +37,11 @@ public class OptionalAuthorizationHeaderFilter
   @Override
   public GatewayFilter apply(Config config) {
     return ((exchange, chain) -> {
-      log.info("OptionalAuthorizationHeaderFilter's apply executes");
+      log.info("[OptionalAuthorizationHeaderFilter's apply executes]");
 
       ServerHttpRequest request = exchange.getRequest();
       if (request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
 
-        log.info("[Authorization value]: " + request.getHeaders().get(HttpHeaders.AUTHORIZATION));
         if (request.getHeaders().get(HttpHeaders.AUTHORIZATION) == null) {
           //          return chain.filter(exchange);
           return onError(exchange, CustomErrMessage.NOT_VALID_JWT_TOKEN);
@@ -84,7 +83,7 @@ public class OptionalAuthorizationHeaderFilter
         return chain.filter(exchange);
       }
 
-      log.info("Successful Verifying Access-Permissions!");
+      log.info("[Successful Verifying Access-Permissions]!");
       return chain.filter(exchange);
     });
   }
