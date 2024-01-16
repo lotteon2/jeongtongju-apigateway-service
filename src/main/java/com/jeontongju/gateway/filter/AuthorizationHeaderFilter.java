@@ -64,16 +64,16 @@ public class AuthorizationHeaderFilter
           String memberRole = claims.get("memberRole", String.class);
 
           // 도메인과 역할이 맞지 않는 경우, 에러처리 
-          String origin = request.getHeaders().getOrigin();
-          if (origin.equals("jeontongju.shop") && !memberRole.equals("ROLE_CONSUMER")) {
-            return onError(exchange, CustomErrMessage.NOT_MATCH_DOMAIN_ROLE);
-          } else if (origin.equals("jeontongju-front-jumo-nine.vercel.app")
-              && !memberRole.equals("ROLE_SELLER")) {
-            return onError(exchange, CustomErrMessage.NOT_MATCH_DOMAIN_ROLE);
-          } else if (origin.equals("jeontongju-front-admin-pi.vercel.app")
-              && !memberRole.equals("ROLE_ADMIN")) {
-            return onError(exchange, CustomErrMessage.NOT_MATCH_DOMAIN_ROLE);
-          }
+//          String origin = request.getHeaders().getOrigin();
+//          if (origin.equals("jeontongju.shop") && !memberRole.equals("ROLE_CONSUMER")) {
+//            return onError(exchange, CustomErrMessage.NOT_MATCH_DOMAIN_ROLE);
+//          } else if (origin.equals("jeontongju-front-jumo-nine.vercel.app")
+//              && !memberRole.equals("ROLE_SELLER")) {
+//            return onError(exchange, CustomErrMessage.NOT_MATCH_DOMAIN_ROLE);
+//          } else if (origin.equals("jeontongju-front-admin-pi.vercel.app")
+//              && !memberRole.equals("ROLE_ADMIN")) {
+//            return onError(exchange, CustomErrMessage.NOT_MATCH_DOMAIN_ROLE);
+//          }
 
           exchange
               .getRequest()
